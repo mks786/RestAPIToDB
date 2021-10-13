@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using REST_API_TO_DB.Models;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace REST_API_TO_DB.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class DataSaveToDBController : ControllerBase
