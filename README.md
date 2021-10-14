@@ -1,7 +1,7 @@
 # RestAPIToDB
 For code test
 This codeis just for the testing purpose
-Using Code first first create the db and then execute it 
+Using Code first. first create the db and then execute it 
 JWT Token is implemented but didnt work need to test it due to shortage of time not able to complete it
 It saves the following jason formated data to the DB
 
