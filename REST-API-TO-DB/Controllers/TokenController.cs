@@ -27,7 +27,7 @@ namespace REST_API_TO_DB.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(UserInfo _userData)
+        public async Task<IActionResult> Post([FromBody]UserInfo _userData)
         {
 
             if (_userData != null && _userData.Email != null && _userData.Password != null)

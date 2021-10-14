@@ -26,11 +26,11 @@ namespace REST_API_TO_DB.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Description")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Minutes")
                         .HasColumnType("bigint");
@@ -59,8 +59,8 @@ namespace REST_API_TO_DB.Data.Migrations
                     b.Property<long>("ContractTimeMinutes")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Date")
-                        .HasColumnType("int");
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsFullDayAbsence")
                         .HasColumnType("bit");

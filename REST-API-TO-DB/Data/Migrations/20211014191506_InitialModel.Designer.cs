@@ -10,8 +10,8 @@ using REST_API_TO_DB.Models;
 namespace REST_API_TO_DB.Data.Migrations
 {
     [DbContext(typeof(RESTAPI2DBContext))]
-    [Migration("20211013231314_RAPI2DB")]
-    partial class RAPI2DB
+    [Migration("20211014191506_InitialModel")]
+    partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,11 @@ namespace REST_API_TO_DB.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Description")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Minutes")
                         .HasColumnType("bigint");
@@ -61,8 +61,8 @@ namespace REST_API_TO_DB.Data.Migrations
                     b.Property<long>("ContractTimeMinutes")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Date")
-                        .HasColumnType("int");
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsFullDayAbsence")
                         .HasColumnType("bit");
@@ -77,6 +77,54 @@ namespace REST_API_TO_DB.Data.Migrations
                         .HasName("PK_Schedule_ID");
 
                     b.ToTable("Schedules");
+                });
+
+            modelBuilder.Entity("REST_API_TO_DB.Models.UserInfo", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
+
+                    b.HasKey("UserId")
+                        .HasName("PK_UserInfo");
+
+                    b.ToTable("UserInfo");
                 });
 
             modelBuilder.Entity("REST_API_TO_DB.Models.Projection", b =>

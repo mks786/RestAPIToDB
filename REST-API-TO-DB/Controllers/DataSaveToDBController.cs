@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace REST_API_TO_DB.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class DataSaveToDBController : ControllerBase
@@ -24,14 +24,14 @@ namespace REST_API_TO_DB.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<RESTAPI2DB>> PostProducts(RESTAPI2DB ScheduleResult)
+        public async Task<ActionResult<RESTAPI2DB>> Post([FromBody] RESTAPI2DB ScheduleResult)
         {
             try
             {
                 _context.Schedules.AddRange(ScheduleResult.ScheduleResult.Schedules);
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                return Ok(new { Message = "Data saved successfully!", Total_records = _context.Schedules.Count() }); 
             }
             catch (Exception e)
             {

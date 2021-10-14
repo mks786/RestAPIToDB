@@ -75,14 +75,14 @@ namespace REST_API_TO_DB.Models
     //{
     //    public string Color { get; set; }
     //    public string Description { get; set; }
-    //    public DateTime Start { get; set; }
+    //    //public DateTime Start { get; set; }
     //    public int minutes { get; set; }
     //}
 
     //public class Schedule
     //{
     //    public int ContractTimeMinutes { get; set; }
-    //    public DateTime Date { get; set; }
+    //    //public DateTime Date { get; set; }
     //    public bool IsFullDayAbsence { get; set; }
     //    public string Name { get; set; }
     //    public string PersonId { get; set; }
@@ -96,7 +96,7 @@ namespace REST_API_TO_DB.Models
 
     //public class Root
     //{
-    //    public int Id { get; set; }
+    //    //public int Id { get; set; }
     //    public ScheduleResult ScheduleResult { get; set; }
     //}
 }

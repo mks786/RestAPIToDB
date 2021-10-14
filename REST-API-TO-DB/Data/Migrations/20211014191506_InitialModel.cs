@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace REST_API_TO_DB.Data.Migrations
 {
-    public partial class RAPI2DB : Migration
+    public partial class InitialModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace REST_API_TO_DB.Data.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContractTimeMinutes = table.Column<long>(nullable: false),
-                    Date = table.Column<int>(nullable: false),
+                    Date = table.Column<string>(nullable: true),
                     IsFullDayAbsence = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "varchar(100)", nullable: true),
                     PersonId = table.Column<Guid>(nullable: false)
@@ -25,13 +25,31 @@ namespace REST_API_TO_DB.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserInfo",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(unicode: false, maxLength: 30, nullable: false),
+                    LastName = table.Column<string>(unicode: false, maxLength: 30, nullable: false),
+                    UserName = table.Column<string>(unicode: false, maxLength: 30, nullable: false),
+                    Email = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
+                    Password = table.Column<string>(unicode: false, maxLength: 20, nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserInfo", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Projections",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Color = table.Column<int>(nullable: false),
-                    Description = table.Column<int>(nullable: false),
+                    Color = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     Start = table.Column<string>(nullable: true),
                     Minutes = table.Column<long>(nullable: false),
                     ScheduleId = table.Column<int>(nullable: false)
@@ -57,6 +75,9 @@ namespace REST_API_TO_DB.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Projections");
+
+            migrationBuilder.DropTable(
+                name: "UserInfo");
 
             migrationBuilder.DropTable(
                 name: "Schedules");
